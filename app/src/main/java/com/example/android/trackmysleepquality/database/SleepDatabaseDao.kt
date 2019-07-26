@@ -43,4 +43,7 @@ interface SleepDatabaseDao {
 	@Query("SELECT * FROM daily_sleep_quality_table ORDER BY nightId DESC LIMIT 1")
 	fun getTonight(): SleepNight?
 
+	@Query("SELECT ROUND(AVG(quality_rating)) AS average_rating FROM daily_sleep_quality_table")
+	fun getAverageSleepQuality(): Int
+
 }

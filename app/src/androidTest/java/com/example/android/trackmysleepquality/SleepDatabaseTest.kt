@@ -75,4 +75,16 @@ class SleepDatabaseTest {
         val nights = sleepDao.getAllNights()
         assertEquals(nights.value, null)
     }
+
+    @Test
+    @Throws(Exception::class)
+    fun averageSleepQuality() {
+        sleepDao.clear()
+        val nightOne = SleepNight(sleepQuality = 4)
+        sleepDao.insert(nightOne)
+        val nightTwo = SleepNight(sleepQuality = 2)
+        sleepDao.insert(nightTwo)
+        val average = sleepDao.getAverageSleepQuality()
+        assertEquals(average, 3)
+    }
 }
